@@ -23,7 +23,7 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../Develop/style.css" />
+    <link rel="stylesheet" href="style.css" />
     <title>Work Day Scheduler</title>
   </head>
 
@@ -42,9 +42,9 @@
           class="form-control"
           aria-label="Large"
           aria-describedby="inputGroup-sizing-sm"
-          id="input-group"
+          id="cityname"
         />
-          <a href="#" class="btn btn-primary">Generate Forecast</a>
+          <a href="#" id="generateweather">Generate Forecast</a>
         </div>
         <div class="card-footer text-muted">
         </div>
@@ -60,11 +60,14 @@
       </div>
       <div class="card1">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
+          <h3 class="card-title"></h3>
+          <h5 id="time-display"></h5>
         <ul class="list-group list-group-flush" >
-          <li class="list-group-item"></li>
-          <li class="list-group-item"></li>
-          <li class="list-group-item"></li>
+          <li id="Icon"></li>
+          <li id="temp"></li>
+          <li id="humidity"></li>
+          <li id="windspeed"></li>
+          <li id="UV"></li>
         </ul>
       </div>
       </div>
@@ -74,54 +77,54 @@
         <article class="card2">
            <p>Day 1</p>
            <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li id="Day1Icon"></li>
+            <li id="Day1Temp"></li>
+            <li id="Day1Humidity"></li>
+            <li id="Day1Windspeed"></li>
+            <li id="Day1UV"></li>
         </ul>
-        </article><!-- /card-one -->
+        </article>
 
 <article class="card2">
            <p>Day 2</p>
            <ul>
-               <li></li>
-               <li></li>
-               <li></li>
-               <li></li>
-               <li></li>
+            <li id="Day2Icon"></li>
+            <li id="Day2Temp"></li>
+            <li id="Day2Humidity"></li>
+            <li id="Day2Windspeed"></li>
+            <li id="Day2UV"></li>
            </ul>
-    </article><!-- /card-two -->
+    </article>
 
 <article class="card2">
           <p>Day 3</p>
           <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li id="Day3Icon"></li>
+            <li id="Day3Temp"></li>
+            <li id="Day3Humidity"></li>
+            <li id="Day3Windspeed"></li>
+            <li id="Day3UV"></li>
         </ul>
-    </article><!-- /card-three -->
+    </article>
 
 <article class="card2">
            <p>Day 4</p>
            <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li id="Day4Icon"></li>
+            <li id="Day4Temp"></li>
+            <li id="Day4Humidity"></li>
+            <li id="Day4Windspeed"></li>
+            <li id="Day4UV"></li>
         </ul>
-    </article><!-- /card2-four -->
+    </article>
     <article class="card2">
         <p>Day 5</p>
         <ul>
-         <li></li>
-         <li></li>
-         <li></li>
-         <li></li>
-         <li></li>
+          <li id="Day5Icon"></li>
+          <li id="Day5Temp"></li>
+          <li id="Day5Humidity"></li>
+          <li id="Day5Windspeed"></li>
+          <li id="Day5UV"></li>
      </ul>
  </article>
 
@@ -132,7 +135,7 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src='config.js'></script>
+    <script src="config.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
