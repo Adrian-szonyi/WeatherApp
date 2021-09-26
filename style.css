@@ -1,0 +1,29 @@
+.jumbotron {
+  text-align: center;
+  background-color: transparent;
+  color: black;
+  border-radius: 0;
+  border-bottom: 10px solid black;
+}
+.list-group {
+  width: 20%;
+}
+.card1 {
+  width: 48%;
+  display: flex;
+  margin-left: 191px;
+}
+.row2 {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.card2 {
+  justify-content: space-between;
+  flex: 0 1 18%;
+}
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
