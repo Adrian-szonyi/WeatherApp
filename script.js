@@ -33,9 +33,7 @@ var Day5Windspeed = document.querySelector("#Day5Windspeed");
 var Day5Humidity = document.querySelector("#Day5Humidity");
 var Day5UV = document.querySelector("#Day5UV");
 var Day5Icon = document.querySelector("#Day5Icon");
-var oneCall = fetch(
-  `https://api.openweathermap.org/data/2.5/onecall?lat=${cityforecast.coord.lat}&lon=${cityforecast.coord.lon}&appid=${mykey}&units=metric`
-)
+
 async function getWeatherData() {
   var cityforecast = await fetch(
     "https://api.openweathermap.org/data/2.5/weather?q=" +
