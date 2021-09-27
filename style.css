@@ -5,6 +5,9 @@
   border-radius: 0;
   border-bottom: 10px solid black;
 }
+img {
+  max-height: 50px;
+}
 .list-group {
   width: 20%;
 }
@@ -26,4 +29,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+#Icon {
+  max-height: 50px;
+  max-width: 50px;
 }

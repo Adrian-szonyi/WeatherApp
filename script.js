@@ -1,12 +1,12 @@
-
 var mykey = My_KEY;
-var timeDisplayEl =  document.querySelector("#time-display");
-var cardTitle = document.querySelector(".card-title")
+var timeDisplayEl = document.querySelector("#time-display");
+var cardTitle = document.querySelector(".card-title");
 var cityname = document.querySelector("#cityname");
 var humidity = document.querySelector("#humidity");
 var temperature = document.querySelector("#temp");
 var UVindex = document.querySelector("#UV");
 var windspeed = document.querySelector("#windspeed");
+var Icon = document.querySelector("#Icon");
 var button = document.querySelector("#generateweather");
 var Day1Temp = document.querySelector("#Day1Temp");
 var Day1Windspeed = document.querySelector("#Day1Windspeed");
@@ -33,55 +33,247 @@ var Day5Windspeed = document.querySelector("#Day5Windspeed");
 var Day5Humidity = document.querySelector("#Day5Humidity");
 var Day5UV = document.querySelector("#Day5UV");
 var Day5Icon = document.querySelector("#Day5Icon");
-
-
+var oneCall = fetch(
+  `https://api.openweathermap.org/data/2.5/onecall?lat=${cityforecast.coord.lat}&lon=${cityforecast.coord.lon}&appid=${mykey}&units=metric`
+)
 async function getWeatherData() {
-    var cityforecast = await fetch('https://api.openweathermap.org/data/2.5/weather?q='+cityname.value+'&appid='+mykey+'')
-    .then(response => response.json())
-    console.log(cityforecast)
-    var oneCall = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${cityforecast.coord.lat}&lon=${cityforecast.coord.lon}&appid=${mykey}&units=metric`)
-    .then(response => response.json())
-    console.log(oneCall)
-
-    cardTitle.textContent= cityname.value;
-    temperature.textContent= "Current Temp: " + oneCall.current.temp + " C"
-    windspeed.textContent= "Wind Speed: " + cityforecast.wind.speed;
-    UVindex.textContent= "UV Index: " + oneCall.current.uvi;
-    humidity.textContent = "Humidity: " + oneCall.current.humidity;
-    Day1Temp.textContent = "Forecast Temp: " + oneCall.daily[1].temp.day;
-    Day1Humidity.textContent = "Humidity: " + oneCall.daily[1].humidity;
-    Day1UV.textContent = "UV Index: " + oneCall.daily[1].uvi;
-    Day1Windspeed.textContent = "Wind Speed: " + oneCall.daily[1].wind_speed;
-    Day2Temp.textContent = "Forecast Temp: " + oneCall.daily[2].temp.day;
-    Day2Humidity.textContent = "Humidity: " + oneCall.daily[2].humidity;
-    Day2UV.textContent = "UV Index: " + oneCall.daily[2].uvi;
-    Day2Windspeed.textContent = "Wind Speed: " + oneCall.daily[2].wind_speed;
-    Day3Temp.textContent = "Forecast Temp: " + oneCall.daily[3].temp.day;
-    Day3Humidity.textContent = "Humidity: " + oneCall.daily[3].humidity;
-    Day3UV.textContent = "UV Index: " + oneCall.daily[3].uvi;
-    Day3Windspeed.textContent = "Wind Speed: " + oneCall.daily[3].wind_speed;
-    Day4Temp.textContent = "Forecast Temp: " + oneCall.daily[4].temp.day;
-    Day4Humidity.textContent = "Humidity: " + oneCall.daily[4].humidity;
-    Day4UV.textContent = "UV Index: " + oneCall.daily[4].uvi;
-    Day4Windspeed.textContent = "Wind Speed: " + oneCall.daily[4].wind_speed;
-    Day5Temp.textContent = "Forecast Temp: " + oneCall.daily[5].temp.day;
-    Day5Humidity.textContent = "Humidity: " + oneCall.daily[5].humidity;
-    Day5UV.textContent = "UV Index: " + oneCall.daily[5].uvi;
-    Day5Windspeed.textContent = "Wind Speed: " + oneCall.daily[5].wind_speed;
+  var cityforecast = await fetch(
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
+      cityname.value +
+      "&appid=" +
+      mykey +
+      ""
+  ).then((response) => response.json());
+  console.log(cityforecast);
+  var oneCall = await fetch(
+    `https://api.openweathermap.org/data/2.5/onecall?lat=${cityforecast.coord.lat}&lon=${cityforecast.coord.lon}&appid=${mykey}&units=metric`
+  ).then((response) => response.json());
+  console.log(oneCall);
+  if (oneCall.current.weather[0].main === "Rain") {
+    var img = document.createElement("img");
+    img.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Icon.appendChild(img);
+  }
+  else if (oneCall.current.weather[0].main === "Thunderstorm") {
+    var img = document.createElement("img");
+    img.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Icon.appendChild(img);
+  }
+  else if (oneCall.current.weather[0].main === "Drizzle") {
+    var img = document.createElement("img");
+    img.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Icon.appendChild(img);
+  }
+  else if (oneCall.current.weather[0].main === "Snow") {
+    var img = document.createElement("img");
+    img.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Icon.appendChild(img);
+  }
+  else if (oneCall.current.weather[0].main === "Clouds") {
+    var img = document.createElement("img");
+    img.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Icon.appendChild(img);
+  }
+  else if (oneCall.current.weather[0].main === "Clear") {
+    var img = document.createElement("img");
+    img.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Icon.appendChild(img);
+  }
+  cardTitle.textContent = cityname.value;
+  temperature.textContent = "Current Temp: " + oneCall.current.temp + " C";
+  windspeed.textContent = "Wind Speed: " + cityforecast.wind.speed;
+  UVindex.textContent = "UV Index: " + oneCall.current.uvi;
+  humidity.textContent = "Humidity: " + oneCall.current.humidity;
+  if (oneCall.daily[1].weather[0].main === "Rain") {
+    var img1 = document.createElement("img1");
+    img1.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day1Icon.appendChild(img1);
+  }
+  else if (oneCall.daily[1].weather[0].main === "Thunderstorm") {
+    var img1 = document.createElement("img1");
+    img1.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day1Icon.appendChild(img1);
+  }
+  else if (oneCall.daily[1].weather[0].main === "Drizzle") {
+    var img = document.createElement("img");
+    img1.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day1Icon.appendChild(img1);
+  }
+  else if (oneCall.daily[1].weather[0].main === "Snow") {
+    var img1 = document.createElement("img1");
+    img1.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day1Icon.appendChild(img1);
+  }
+  else if (oneCall.current.weather[0].main === "Clouds") {
+    var img1 = document.createElement("img1");
+    img1.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day1Icon.appendChild(img1);
+  }
+  else if (oneCall.daily[1].weather[0].main === "Clear") {
+    var img1 = document.createElement("img1");
+    img1.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day1Icon.appendChild(img1);
+  }
+  Day1Temp.textContent = "Forecast Temp: " + oneCall.daily[1].temp.day;
+  Day1Humidity.textContent = "Humidity: " + oneCall.daily[1].humidity;
+  Day1UV.textContent = "UV Index: " + oneCall.daily[1].uvi;
+  Day1Windspeed.textContent = "Wind Speed: " + oneCall.daily[1].wind_speed;
+  if (oneCall.daily[2].weather[0].main === "Rain") {
+    var img2 = document.createElement("img2");
+    img2.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day2Icon.appendChild(img2);
+  }
+  else if (oneCall.daily[2].weather[0].main === "Thunderstorm") {
+    var img2 = document.createElement("img2");
+    img2.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day2Icon.appendChild(img2);
+  }
+  else if (oneCall.current.weather[0].main === "Clouds") {
+    var img2 = document.createElement("img2");
+    img2.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day2Icon.appendChild(img2);
+  }
+  else if (oneCall.daily[2].weather[0].main === "Drizzle") {
+    var img2 = document.createElement("img2");
+    img2.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day2Icon.appendChild(img2);
+  }
+  else if (oneCall.daily[2].weather[0].main === "Snow") {
+    var img2 = document.createElement("img2");
+    img2.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day2Icon.appendChild(img2);
+  }
+  else if (oneCall.daily[2].weather[0].main === "Clear") {
+    var img2 = document.createElement("img2");
+    img2.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day2Icon.appendChild(img2);
+  }
+  Day2Temp.textContent = "Forecast Temp: " + oneCall.daily[2].temp.day;
+  Day2Humidity.textContent = "Humidity: " + oneCall.daily[2].humidity;
+  Day2UV.textContent = "UV Index: " + oneCall.daily[2].uvi;
+  Day2Windspeed.textContent = "Wind Speed: " + oneCall.daily[2].wind_speed;
+  if (oneCall.daily[3].weather[0].main === "Rain") {
+    var img3 = document.createElement("img3");
+    img3.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day3Icon.appendChild(img3);
+  }
+  else if (oneCall.current.weather[0].main === "Clouds") {
+    var img3 = document.createElement("img3");
+    img3.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day3Icon.appendChild(img3);
+  }
+  else if (oneCall.daily[3].weather[0].main === "Thunderstorm") {
+    var img3 = document.createElement("img3");
+    img3.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day3Icon.appendChild(img3);
+  }
+  else if (oneCall.daily[3].weather[0].main === "Drizzle") {
+    var img3 = document.createElement("img3");
+    img3.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day3Icon.appendChild(img3);
+  }
+  else if (oneCall.daily[3].weather[0].main === "Snow") {
+    var img3 = document.createElement("img3");
+    img3.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day3Icon.appendChild(img3);
+  }
+  else if (oneCall.daily[3].weather[0].main === "Clear") {
+    var img3 = document.createElement("img3");
+    img3.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day3Icon.appendChild(img3);
+  }
+  Day3Temp.textContent = "Forecast Temp: " + oneCall.daily[3].temp.day;
+  Day3Humidity.textContent = "Humidity: " + oneCall.daily[3].humidity;
+  Day3UV.textContent = "UV Index: " + oneCall.daily[3].uvi;
+  Day3Windspeed.textContent = "Wind Speed: " + oneCall.daily[3].wind_speed;
+  if (oneCall.daily[4].weather[0].main === "Rain") {
+    var img4 = document.createElement("img4");
+    img4.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day4Icon.appendChild(img4);
+  }
+  else if (oneCall.daily[4].weather[0].main === "Thunderstorm") {
+    var img4 = document.createElement("img4");
+    img4.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day4Icon.appendChild(img4);
+  }
+  else if (oneCall.current.weather[0].main === "Clouds") {
+    var img4 = document.createElement("img4");
+    img4.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day4Icon.appendChild(img4);
+  }
+  else if (oneCall.daily[4].weather[0].main === "Drizzle") {
+    var img4 = document.createElement("img4");
+    img4.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day4Icon.appendChild(img4);
+  }
+  else if (oneCall.daily[4].weather[0].main === "Snow") {
+    var img4 = document.createElement("img4");
+    img4.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day4Icon.appendChild(img4);
+  }
+  else if (oneCall.daily[4].weather[0].main === "Clear") {
+    var img4 = document.createElement("img4");
+    img4.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day4Icon.appendChild(img4);
+  }
+  Day4Temp.textContent = "Forecast Temp: " + oneCall.daily[4].temp.day;
+  Day4Humidity.textContent = "Humidity: " + oneCall.daily[4].humidity;
+  Day4UV.textContent = "UV Index: " + oneCall.daily[4].uvi;
+  Day4Windspeed.textContent = "Wind Speed: " + oneCall.daily[4].wind_speed;
+  if (oneCall.daily[5].weather[0].main === "Rain") {
+    var img5 = document.createElement("img5");
+    img5.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day5Icon.appendChild(img5);
+  }
+  else if (oneCall.current.weather[0].main === "Clouds") {
+    var img5 = document.createElement("img5");
+    img5.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day5Icon.appendChild(img5);
+  }
+  else if (oneCall.daily[5].weather[0].main === "Thunderstorm") {
+    var img5 = document.createElement("img5");
+    img5.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day5Icon.appendChild(img5);
+  }
+  else if (oneCall.daily[5].weather[0].main === "Drizzle") {
+    var img5 = document.createElement("img5");
+    img5.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day5Icon.appendChild(img5);
+  }
+  else if (oneCall.daily[5].weather[0].main === "Snow") {
+    var img5 = document.createElement("img5");
+    img5.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day5Icon.appendChild(img5);
+  }
+  else if (oneCall.daily[5].weather[0].main === "Clear") {
+    var img5 = document.createElement("img5");
+    img5.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    Day5Icon.appendChild(img5);
+  }
+  Day5Temp.textContent = "Forecast Temp: " + oneCall.daily[5].temp.day;
+  Day5Humidity.textContent = "Humidity: " + oneCall.daily[5].humidity;
+  Day5UV.textContent = "UV Index: " + oneCall.daily[5].uvi;
+  Day5Windspeed.textContent = "Wind Speed: " + oneCall.daily[5].wind_speed;
 }
 
-cityname.addEventListener("keydown", function(event){
-    if (event.keyCode === 13){
-        getWeatherData();
-    }
-})
-button.addEventListener("click", function(){
-      getWeatherData();
-      // displayTime();
-  });
-  // function displayTime() {
-  //   var rightNow = moment().format("MMM DD, YYYY [at] hh:mm:ss a");
-  //   var newcity = rightNow.tz("Sydney/Australia").format("HH:MM");
-  //   timeDisplayEl.text(newcity);
-  // }
+cityname.addEventListener("keydown", function (event) {
+  if (event.keyCode === 13) {
+    getWeatherData();
+  }
+});
+button.addEventListener("click", function () {
+  getWeatherData();
+  // displayTime();
+});
 
+// // function displayTime() {
+//   var rightNow = moment().format("MMM DD, YYYY [at] hh:mm:ss a");
+//   var newcity = rightNow.tz("Sydney/Australia").format("HH:MM");
+//   timeDisplayEl.text(newcity);
+// }
+
+//add moment to current card and five day forecast
+//if statement for weather icons
+//localstorage for search terms
+//make previous searches clickable
+//fix up CSS
