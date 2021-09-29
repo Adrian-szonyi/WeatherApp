@@ -281,7 +281,7 @@ button.addEventListener("click", function () {
   localStorage.setItem("SearchHistory", Searchstring);
   getWeatherData();
   RenderSearchHistory();
-
+  location.reload()
 });
 
 function RenderSearchHistory() {
@@ -293,13 +293,18 @@ for (i=0; i < SearchHistory.length; i++) {
 var PreviousSearchTerm = SearchHistory[i];
 var Button = document.createElement("button");
 Button.textContent = PreviousSearchTerm;
-Button.setAttribute("id", "Button" + i);
-Buttonlist.appendChild(Button)
-if (PreviousSearchTerm === SearchHistory[i]){
-  return;
+Button.setAttribute("id", "Button"+i);
+if (cityname.value ==! SearchHistory[i]){
+  Buttonlist.appendChild(Button)
 }
+
+Button.addEventListener("click", function() {
+  getWeatherData();
+   console.log(Button.innerHTML)
+})
 }
 console.log(Button);
+
 
 //Use JQuery to create button element with the search term
 //Bind event listener to new button element so that when clicked it should call the API with the cityname
