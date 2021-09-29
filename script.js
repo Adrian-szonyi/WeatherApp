@@ -288,14 +288,17 @@ function RenderSearchHistory() {
 
 //iterate through the search history
 
+
 for (i=0; i < SearchHistory.length; i++) {
 var PreviousSearchTerm = SearchHistory[i];
 var Button = document.createElement("button");
 Button.textContent = PreviousSearchTerm;
-
 Button.setAttribute("id", "Button" + i);
-}
 Buttonlist.appendChild(Button)
+if (PreviousSearchTerm === SearchHistory[i]){
+  return;
+}
+}
 console.log(Button);
 
 //Use JQuery to create button element with the search term
