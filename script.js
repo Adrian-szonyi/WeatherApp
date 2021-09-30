@@ -36,13 +36,22 @@ var Day5Icon = document.querySelector("#Day5Icon");
 var Buttonlist= document.querySelector("#ButtonList");
 var Currenttime = document.querySelector("#Currenttime");
 var SearchHistory = JSON.parse(localStorage.getItem("SearchHistory"))|| [];
+var Day1 = document.querySelector("#Day1")
+var Day2 = document.querySelector("#Day2")
+var Day3 = document.querySelector("#Day3")
+var Day4 = document.querySelector("#Day4")
+var Day5 = document.querySelector("#Day5")
 // var SearchHistory = []
-
 function init() {
-  RenderSearchHistory() 
-}
 
+}
 async function getWeatherData() {
+  Day1Icon.textContent = " ";
+  Icon.textContent = " ";
+  Day2Icon.textContent = " ";
+  Day3Icon.textContent = " ";
+  Day4Icon.textContent = " ";
+  Day5Icon.textContent = " ";
   var cityforecast = await fetch(
     "https://api.openweathermap.org/data/2.5/weather?q=" +
       cityname.value +
@@ -57,12 +66,12 @@ async function getWeatherData() {
   console.log(oneCall);
   if (oneCall.current.weather[0].main === "Rain") {
     var img = document.createElement("img");
-    img.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img.src = "https://cdn-icons-png.flaticon.com/512/1146/1146858.png";
     Icon.appendChild(img);
   }
   else if (oneCall.current.weather[0].main === "Thunderstorm") {
     var img = document.createElement("img");
-    img.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img.src = "https://cdn-icons-png.flaticon.com/512/3445/3445722.png";
     Icon.appendChild(img);
   }
   else if (oneCall.current.weather[0].main === "Drizzle") {
@@ -72,18 +81,18 @@ async function getWeatherData() {
   }
   else if (oneCall.current.weather[0].main === "Snow") {
     var img = document.createElement("img");
-    img.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img.src = "https://cdn-icons-png.flaticon.com/512/3026/3026312.png";
     Icon.appendChild(img);
   }
   else if (oneCall.current.weather[0].main === "Clouds") {
     var img = document.createElement("img");
-    img.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img.src = "https://cdn-icons-png.flaticon.com/512/1163/1163624.png";
     Icon.appendChild(img);
     console.log(Icon)
   }
   else if (oneCall.current.weather[0].main === "Clear") {
     var img = document.createElement("img");
-    img.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img.src = "https://cdn-icons-png.flaticon.com/512/869/869869.png";
     Icon.appendChild(img);
   }
   temperature.textContent = "Current Temp: " + oneCall.current.temp + " C";
@@ -92,12 +101,12 @@ async function getWeatherData() {
   humidity.textContent = "Humidity: " + oneCall.current.humidity;
   if (oneCall.daily[1].weather[0].main === "Rain") {
     var img1 = document.createElement("img");
-    img1.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img1.src = "https://cdn-icons-png.flaticon.com/512/1146/1146858.png";
     Day1Icon.appendChild(img1);
   }
   else if (oneCall.daily[1].weather[0].main === "Thunderstorm") {
     var img1 = document.createElement("img");
-    img1.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img1.src = "https://cdn-icons-png.flaticon.com/512/3445/3445722.png";
     Day1Icon.appendChild(img1);
   }
   else if (oneCall.daily[1].weather[0].main === "Drizzle") {
@@ -107,18 +116,18 @@ async function getWeatherData() {
   }
   else if (oneCall.daily[1].weather[0].main === "Snow") {
     var img1 = document.createElement("img");
-    img1.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img1.src = "https://cdn-icons-png.flaticon.com/512/3026/3026312.png";
     Day1Icon.appendChild(img1);
   }
-  else if (oneCall.current.weather[0].main === "Clouds") {
+  else if (oneCall.daily[1].weather[0].main === "Clouds") {
     var img1 = document.createElement("img");
-    img1.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img1.src = "https://cdn-icons-png.flaticon.com/512/1163/1163624.png";
     Day1Icon.appendChild(img1);
     console.log(Day1Icon)
   }
   else if (oneCall.daily[1].weather[0].main === "Clear") {
     var img1 = document.createElement("img");
-    img1.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img1.src = "https://cdn-icons-png.flaticon.com/512/869/869869.png";
     Day1Icon.appendChild(img1);
   }
   console.log(oneCall.daily[1].weather[0].main);
@@ -128,17 +137,17 @@ async function getWeatherData() {
   Day1Windspeed.textContent = "Wind Speed: " + oneCall.daily[1].wind_speed;
   if (oneCall.daily[2].weather[0].main === "Rain") {
     var img2 = document.createElement("img");
-    img2.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img2.src = "https://cdn-icons-png.flaticon.com/512/1146/1146858.png";
     Day2Icon.appendChild(img2);
   }
   else if (oneCall.daily[2].weather[0].main === "Thunderstorm") {
     var img2 = document.createElement("img");
-    img2.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img2.src = "https://cdn-icons-png.flaticon.com/512/3445/3445722.png";
     Day2Icon.appendChild(img2);
   }
-  else if (oneCall.current.weather[0].main === "Clouds") {
+  else if (oneCall.daily[2].weather[0].main === "Clouds") {
     var img2 = document.createElement("img");
-    img2.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img2.src = "https://cdn-icons-png.flaticon.com/512/1163/1163624.png";
     Day2Icon.appendChild(img2);
   }
   else if (oneCall.daily[2].weather[0].main === "Drizzle") {
@@ -148,12 +157,12 @@ async function getWeatherData() {
   }
   else if (oneCall.daily[2].weather[0].main === "Snow") {
     var img2 = document.createElement("img");
-    img2.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img2.src = "https://cdn-icons-png.flaticon.com/512/3026/3026312.png";
     Day2Icon.appendChild(img2);
   }
   else if (oneCall.daily[2].weather[0].main === "Clear") {
     var img2 = document.createElement("img");
-    img2.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img2.src = "https://cdn-icons-png.flaticon.com/512/869/869869.png";
     Day2Icon.appendChild(img2);
   }
   Day2Temp.textContent = "Forecast Temp: " + oneCall.daily[2].temp.day;
@@ -162,17 +171,17 @@ async function getWeatherData() {
   Day2Windspeed.textContent = "Wind Speed: " + oneCall.daily[2].wind_speed;
   if (oneCall.daily[3].weather[0].main === "Rain") {
     var img3 = document.createElement("img");
-    img3.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img3.src = "https://cdn-icons-png.flaticon.com/512/1146/1146858.png";
     Day3Icon.appendChild(img3);
   }
-  else if (oneCall.current.weather[0].main === "Clouds") {
+  else if (oneCall.daily[3].weather[0].main === "Clouds") {
     var img3 = document.createElement("img");
-    img3.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img3.src = "https://cdn-icons-png.flaticon.com/512/1163/1163624.png";
     Day3Icon.appendChild(img3);
   }
   else if (oneCall.daily[3].weather[0].main === "Thunderstorm") {
     var img3 = document.createElement("img");
-    img3.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img3.src = "https://cdn-icons-png.flaticon.com/512/3445/3445722.png";
     Day3Icon.appendChild(img3);
   }
   else if (oneCall.daily[3].weather[0].main === "Drizzle") {
@@ -182,12 +191,12 @@ async function getWeatherData() {
   }
   else if (oneCall.daily[3].weather[0].main === "Snow") {
     var img3 = document.createElement("img");
-    img3.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img3.src = "https://cdn-icons-png.flaticon.com/512/3026/3026312.png";
     Day3Icon.appendChild(img3);
   }
   else if (oneCall.daily[3].weather[0].main === "Clear") {
     var img3 = document.createElement("img");
-    img3.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img3.src = "https://cdn-icons-png.flaticon.com/512/869/869869.png";
     Day3Icon.appendChild(img3);
   }
   Day3Temp.textContent = "Forecast Temp: " + oneCall.daily[3].temp.day;
@@ -196,17 +205,17 @@ async function getWeatherData() {
   Day3Windspeed.textContent = "Wind Speed: " + oneCall.daily[3].wind_speed;
   if (oneCall.daily[4].weather[0].main === "Rain") {
     var img4 = document.createElement("img");
-    img4.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img4.src = "https://cdn-icons-png.flaticon.com/512/1146/1146858.png";
     Day4Icon.appendChild(img4);
   }
   else if (oneCall.daily[4].weather[0].main === "Thunderstorm") {
     var img4 = document.createElement("img");
-    img4.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img4.src = "https://cdn-icons-png.flaticon.com/512/3445/3445722.png";
     Day4Icon.appendChild(img4);
   }
-  else if (oneCall.current.weather[0].main === "Clouds") {
+  else if (oneCall.daily[4].weather[0].main === "Clouds") {
     var img4 = document.createElement("img");
-    img4.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img4.src = "https://cdn-icons-png.flaticon.com/512/1163/1163624.png";
     Day4Icon.appendChild(img4);
   }
   else if (oneCall.daily[4].weather[0].main === "Drizzle") {
@@ -216,12 +225,12 @@ async function getWeatherData() {
   }
   else if (oneCall.daily[4].weather[0].main === "Snow") {
     var img4 = document.createElement("img");
-    img4.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img4.src = "https://cdn-icons-png.flaticon.com/512/3026/3026312.png";
     Day4Icon.appendChild(img4);
   }
   else if (oneCall.daily[4].weather[0].main === "Clear") {
     var img4 = document.createElement("img");
-    img4.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img4.src = "https://cdn-icons-png.flaticon.com/512/869/869869.png";
     Day4Icon.appendChild(img4);
   }
   Day4Temp.textContent = "Forecast Temp: " + oneCall.daily[4].temp.day;
@@ -230,17 +239,17 @@ async function getWeatherData() {
   Day4Windspeed.textContent = "Wind Speed: " + oneCall.daily[4].wind_speed;
   if (oneCall.daily[5].weather[0].main === "Rain") {
     var img5 = document.createElement("img");
-    img5.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img5.src = "https://cdn-icons-png.flaticon.com/512/1146/1146858.png";
     Day5Icon.appendChild(img5);
   }
-  else if (oneCall.current.weather[0].main === "Clouds") {
+  else if (oneCall.daily[5].weather[0].main === "Clouds") {
     var img5 = document.createElement("img");
-    img5.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img5.src = "https://cdn-icons-png.flaticon.com/512/1163/1163624.png";
     Day5Icon.appendChild(img5);
   }
   else if (oneCall.daily[5].weather[0].main === "Thunderstorm") {
     var img5 = document.createElement("img");
-    img5.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img5.src = "https://cdn-icons-png.flaticon.com/512/3445/3445722.png";
     Day5Icon.appendChild(img5);
   }
   else if (oneCall.daily[5].weather[0].main === "Drizzle") {
@@ -250,27 +259,42 @@ async function getWeatherData() {
   }
   else if (oneCall.daily[5].weather[0].main === "Snow") {
     var img5 = document.createElement("img");
-    img5.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img5.src = "https://cdn-icons-png.flaticon.com/512/3026/3026312.png";
     Day5Icon.appendChild(img5);
   }
   else if (oneCall.daily[5].weather[0].main === "Clear") {
     var img5 = document.createElement("img");
-    img5.src = "https://cdn-icons-png.flaticon.com/512/1163/1163626.png";
+    img5.src = "https://cdn-icons-png.flaticon.com/512/869/869869.png";
     Day5Icon.appendChild(img5);
   }
   Day5Temp.textContent = "Forecast Temp: " + oneCall.daily[5].temp.day;
   Day5Humidity.textContent = "Humidity: " + oneCall.daily[5].humidity;
   Day5UV.textContent = "UV Index: " + oneCall.daily[5].uvi;
   Day5Windspeed.textContent = "Wind Speed: " + oneCall.daily[5].wind_speed;
-    var rightNow = moment().format("MMM DD, YYYY");
+    var rightNow = moment().format("DD/MM/YYYY");
     cardTitle.textContent = cityforecast.name + " " + rightNow;
     console.log(cityname.value);
+
+    var new_date1 = moment().add(1, "days");
+    var formattedDate1 = moment(new_date1).format("DD/MM");
+    var new_date2 = moment().add(2, "days");
+    var formattedDate2 = moment(new_date2).format("DD/MM");
+    var new_date3 = moment().add(3, "days");
+    var formattedDate3 = moment(new_date3).format("DD/MM");
+    var new_date4 = moment().add(4, "days");
+    var formattedDate4 = moment(new_date4).format("DD/MM");
+    var new_date5 = moment().add(5, "days");
+    var formattedDate5 = moment(new_date5).format("DD/MM");
+
+    Day1.textContent = formattedDate1;
+    Day2.textContent = formattedDate2;
+    Day3.textContent = formattedDate3;
+    Day4.textContent = formattedDate4;
+    Day5.textContent = formattedDate5;
+    console.log(new_date1)
   }
-
-
 cityname.addEventListener("keydown", function (event) {
   if (event.keyCode === 13) {
-
     getWeatherData();
     RenderSearchHistory();
   }
@@ -281,9 +305,7 @@ button.addEventListener("click", function () {
   localStorage.setItem("SearchHistory", Searchstring);
   getWeatherData();
   RenderSearchHistory();
-  location.reload()
 });
-
 function RenderSearchHistory() {
 
 //iterate through the search history
@@ -293,50 +315,27 @@ for (i=0; i < SearchHistory.length; i++) {
 var PreviousSearchTerm = SearchHistory[i];
 var Button = document.createElement("button");
 Button.textContent = PreviousSearchTerm;
-Button.setAttribute("id", "Button"+i);
-if (cityname.value ==! SearchHistory[i]){
-  Buttonlist.appendChild(Button)
-}
 
-Button.addEventListener("click", function() {
-  getWeatherData();
-   console.log(Button.innerHTML)
-})
+Button.setAttribute("id", "Button" + i);
 }
-console.log(Button);
-
+Buttonlist.appendChild(Button)
+if (PreviousSearchTerm === SearchHistory[i]){
+  return;
+}
+}
 
 //Use JQuery to create button element with the search term
 //Bind event listener to new button element so that when clicked it should call the API with the cityname
 //append button element into the search history div
-
 // }
 
-}
 init()
 //iterate through the search history
 //render button for each city name
 //place button into the search history div
 //everytime a button is pressed it should call the API function with that cityname
 //change the data attribute to the cityname
-
 // var PreviousCity = localStorage.getItem("generateweather")
 // var search1 = document.querySelector("#Search1")
 // search1.text(PreviousCity)
 // console.log(PreviousCity)
-
-
-
-//add moment to current card and five day forecast
-
-//localstorage for search terms
-//make previous searches clickable
-//fix up CSS
-
-
-//adding moment to the card title with Sydney element
-//adding an extra day for each date below
-//avoiding the duplication of images
-//fixing up localstorage buttons
-
-//set css to hide and then display when searched
