@@ -56,7 +56,11 @@ async function getWeatherData() {
       "&appid=" +
       mykey +
       ""
-  ).then((response) => response.json());
+  ).then((response) => response.json())
+  
+//   if (!response) {
+//   return
+// };
   console.log(cityforecast);
   var oneCall = await fetch(
     `https://api.openweathermap.org/data/2.5/onecall?lat=${cityforecast.coord.lat}&lon=${cityforecast.coord.lon}&appid=${mykey}&units=metric`
@@ -95,7 +99,7 @@ async function getWeatherData() {
     Icon.appendChild(img);
   }
   temperature.textContent = "Current Temp: " + oneCall.current.temp + " C";
-  windspeed.textContent = "Wind Speed: " + cityforecast.wind.speed;
+  windspeed.textContent = "Wind Speed: " + cityforecast.wind.speed + " KpH";
   UVindex.textContent = "UV Index: " + oneCall.current.uvi;
   humidity.textContent = "Humidity: " + oneCall.current.humidity;
   if (oneCall.daily[1].weather[0].main === "Rain") {
@@ -125,10 +129,10 @@ async function getWeatherData() {
     Day1Icon.appendChild(img1);
   }
   console.log(oneCall.daily[1].weather[0].main);
-  Day1Temp.textContent = "Forecast Temp: " + oneCall.daily[1].temp.day;
+  Day1Temp.textContent = "Forecast Temp: " + oneCall.daily[1].temp.day + " C";
   Day1Humidity.textContent = "Humidity: " + oneCall.daily[1].humidity;
   Day1UV.textContent = "UV Index: " + oneCall.daily[1].uvi;
-  Day1Windspeed.textContent = "Wind Speed: " + oneCall.daily[1].wind_speed;
+  Day1Windspeed.textContent = "Wind Speed: " + oneCall.daily[1].wind_speed + " KpH";
   if (oneCall.daily[2].weather[0].main === "Rain") {
     var img2 = document.createElement("img");
     img2.src = "https://cdn-icons-png.flaticon.com/512/1146/1146858.png";
@@ -157,10 +161,10 @@ async function getWeatherData() {
     img2.src = "https://cdn-icons-png.flaticon.com/512/869/869869.png";
     Day2Icon.appendChild(img2);
   }
-  Day2Temp.textContent = "Forecast Temp: " + oneCall.daily[2].temp.day;
+  Day2Temp.textContent = "Forecast Temp: " + oneCall.daily[2].temp.day + " C";
   Day2Humidity.textContent = "Humidity: " + oneCall.daily[2].humidity;
   Day2UV.textContent = "UV Index: " + oneCall.daily[2].uvi;
-  Day2Windspeed.textContent = "Wind Speed: " + oneCall.daily[2].wind_speed;
+  Day2Windspeed.textContent = "Wind Speed: " + oneCall.daily[2].wind_speed + " KpH";
   if (oneCall.daily[3].weather[0].main === "Rain") {
     var img3 = document.createElement("img");
     img3.src = "https://cdn-icons-png.flaticon.com/512/1146/1146858.png";
@@ -186,10 +190,10 @@ async function getWeatherData() {
     img3.src = "https://cdn-icons-png.flaticon.com/512/869/869869.png";
     Day3Icon.appendChild(img3);
   }
-  Day3Temp.textContent = "Forecast Temp: " + oneCall.daily[3].temp.day;
+  Day3Temp.textContent = "Forecast Temp: " + oneCall.daily[3].temp.day + " C";
   Day3Humidity.textContent = "Humidity: " + oneCall.daily[3].humidity;
   Day3UV.textContent = "UV Index: " + oneCall.daily[3].uvi;
-  Day3Windspeed.textContent = "Wind Speed: " + oneCall.daily[3].wind_speed;
+  Day3Windspeed.textContent = "Wind Speed: " + oneCall.daily[3].wind_speed + " KpH";
   if (oneCall.daily[4].weather[0].main === "Rain") {
     var img4 = document.createElement("img");
     img4.src = "https://cdn-icons-png.flaticon.com/512/1146/1146858.png";
@@ -215,10 +219,10 @@ async function getWeatherData() {
     img4.src = "https://cdn-icons-png.flaticon.com/512/869/869869.png";
     Day4Icon.appendChild(img4);
   }
-  Day4Temp.textContent = "Forecast Temp: " + oneCall.daily[4].temp.day;
+  Day4Temp.textContent = "Forecast Temp: " + oneCall.daily[4].temp.day + " C";
   Day4Humidity.textContent = "Humidity: " + oneCall.daily[4].humidity;
   Day4UV.textContent = "UV Index: " + oneCall.daily[4].uvi;
-  Day4Windspeed.textContent = "Wind Speed: " + oneCall.daily[4].wind_speed;
+  Day4Windspeed.textContent = "Wind Speed: " + oneCall.daily[4].wind_speed + " KpH";
   if (oneCall.daily[5].weather[0].main === "Rain") {
     var img5 = document.createElement("img");
     img5.src = "https://cdn-icons-png.flaticon.com/512/1146/1146858.png";
@@ -244,10 +248,10 @@ async function getWeatherData() {
     img5.src = "https://cdn-icons-png.flaticon.com/512/869/869869.png";
     Day5Icon.appendChild(img5);
   }
-  Day5Temp.textContent = "Forecast Temp: " + oneCall.daily[5].temp.day;
+  Day5Temp.textContent = "Forecast Temp: " + oneCall.daily[5].temp.day + " C";
   Day5Humidity.textContent = "Humidity: " + oneCall.daily[5].humidity;
   Day5UV.textContent = "UV Index: " + oneCall.daily[5].uvi;
-  Day5Windspeed.textContent = "Wind Speed: " + oneCall.daily[5].wind_speed;
+  Day5Windspeed.textContent = "Wind Speed: " + oneCall.daily[5].wind_speed + " KpH";
   var rightNow = moment().format("DD/MM/YYYY");
   cardTitle.textContent = cityforecast.name + " " + rightNow;
   console.log(cityname.value);
@@ -275,6 +279,9 @@ cityname.addEventListener("keydown", function (event) {
     return;
   }
   if (event.keyCode === 13) {
+    SearchHistory.push(cityname.value);
+    var Searchstring = JSON.stringify(SearchHistory);
+    localStorage.setItem("SearchHistory", Searchstring);
     getWeatherData();
     RenderSearchHistory();
   }
@@ -300,6 +307,19 @@ function RenderSearchHistory() {
     Button.setAttribute("id", "Button" + i);
   }
   Buttonlist.appendChild(Button);
+
 }
+
+
+
+Buttonlist.addEventListener("click", (event) => {
+  var SelectedCity = event.target.textContent;
+  console.log(SelectedCity)
+  cityname.value = SelectedCity
+  if (SelectedCity) {
+    getWeatherData(cityname.value);
+  }
+});
+
 
 init();
