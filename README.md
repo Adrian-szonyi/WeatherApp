@@ -25,5 +25,5 @@ I have sourced images from [FlatIcon](https://www.flaticon.com/) a free stock im
 
 ## Website Image
 
-![Image of the Weather App website](Assets/unnamed(1).png)
+![Image of the Weather App website](https://github.com/Adrian-szonyi/WeatherApp/blob/main/Assets/unnamed%20(1).png?raw=true)
 
