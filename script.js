@@ -298,15 +298,15 @@ button.addEventListener("click", function () {
 });
 function RenderSearchHistory() {
 
-
+Buttonlist.innerHTML=""
   for (i = 0; i < SearchHistory.length; i++) {
     var PreviousSearchTerm = SearchHistory[i];
     var Button = document.createElement("button");
     Button.textContent = PreviousSearchTerm;
-    console.log(cityname.value);
+    console.log(PreviousSearchTerm, "test");
     Button.setAttribute("id", "Button" + i);
+    Buttonlist.appendChild(Button);
   }
-  Buttonlist.appendChild(Button);
 
 }
 
@@ -322,4 +322,4 @@ Buttonlist.addEventListener("click", (event) => {
 });
 
 
-init();
+RenderSearchHistory();
